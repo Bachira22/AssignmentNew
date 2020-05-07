@@ -1,0 +1,120 @@
+* {
+    font-family: 'segoe ui';
+}
+
+body, html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin: 0;
+    height: 100%;
+}
+
+#Home {
+    font-family: 'segoe ui';
+    background-color: black;
+    height: 100%;
+}
+
+#PersonalInfo {
+    font-family: 'segoe ui';
+    background-color: white;
+    height: 100%;
+}
+
+#WelcomeText {
+    width: 50%;
+    height: auto;
+    overflow: auto;
+    margin-top: 20%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    color: white;
+    width: 40%;
+    position: absolute;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+#WelcomeDiv {
+    padding-left: 8vw;
+    animation-duration: 3s;
+    animation-name: ComeIn;
+}
+
+#WelcomeText > a, #WelcomeText > a:visited, #WelcomeText > a:hover, #WelcomeText > a:active {
+    text-decoration: none;
+    color: orangered;
+}
+
+
+@keyframes ComeIn {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.nav {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+.HomeNav:hover {
+    animation-duration: 1s;
+    animation-name: ShowNav;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ShowNav {
+    100% {
+        box-shadow: 0 5px 20px 7px rgba(255, 255, 255, 0.1);
+    }
+}
+
+    .nav > .nav-header {
+        display: inline;
+    }
+
+        .nav > .nav-header > .nav-title {
+            display: inline-block;
+            font-size: 30px;
+            color: #fff;
+            padding: 10px 10px 10px 10px;
+        }
+
+    .nav > .nav-btn {
+        display: none;
+    }
+
+    .nav > .nav-links {
+        display: inline;
+        float: right;
+        font-size: 21px;
+    }
+
+        .nav > .nav-links > a {
+            display: inline-block;
+            padding: 17px 10px 13px 10px;
+            text-decoration: none;
+            color: #efefef;
+        }
+
+    .nav > #nav-check {
+        display: none;
+    }
+
+    .nav > #nav-check2 {
+        display: none;
+    }
+
+.nav-links a:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out 0.1s;
+}
+
+

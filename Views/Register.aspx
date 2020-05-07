@@ -9,9 +9,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-          <input placeholder =" username" id="username" type="text" />
+          <input placeholder ="Username" name ="UserName" id="username" type="text" />
             <br />
-            Password <input  id="Password" type="password" />
+            Password <input name ="UserPassword" id="Password" type="password" />
             <br />
             <input id="Submit" type="submit" value="submit" />
         </div>

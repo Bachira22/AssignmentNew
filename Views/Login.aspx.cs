@@ -1,17 +1,23 @@
 ﻿using AssignmentNew.Logic;
 using AssignmentNew.Model;
 using System;
+using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace AssignmentNew.Views
 {
-    public partial class Register : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["value"] = false;
+
             if (Page.IsPostBack)
             {
-                ValidateDetails();
+                if (!string.IsNullOrEmpty(Request["UserName"]) && !string.IsNullOrEmpty(Request["UserPassword"]))
+                {
+                    ValidateDetails();
+                }
             }
         }
 
@@ -26,10 +32,11 @@ namespace AssignmentNew.Views
                     UserPassword = Request["UserPassword"]
                 };
 
-                if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }) == false)
+                if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }, true))
                 {
-                    //if username dont exist in the db, insert into db
-                    dbLogic.WriteToDB(user);
+                    
+                    //TO-DO
+                    //Redirect because user exists
                 }
 
                 dbLogic.Dispose();

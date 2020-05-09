@@ -7,12 +7,12 @@
     margin-top: 10%;
     margin-left: 45%;
     width: 20%;
-    height: 42vh;
+    height: 50vh;
     position: absolute;
     border-radius: 5px
 }
 
-#backgroundDiv {
+.backgroundDiv {
     background-color: rgba(34,34,34, 0.45);
     position: absolute;
     width: 230%;
@@ -20,8 +20,16 @@
     height: 24vh;
     margin-left: -100vw;
     margin-top: 16%;
+}
+
+.backgroundDiv_Animate {
     animation: 3s ease-in displayShadow;
     animation-fill-mode: forwards;
+}
+
+.backgroundDiv_FailedLogin {
+    box-shadow: 9px 8px orangered;
+    margin-left: -21vw;
 }
 
 
@@ -66,4 +74,19 @@
     /* margin: 5px; */
     right: 3vw;
     position: absolute;
+    bottom: 10%;
+}
+
+.spaceOutButtons label {
+    margin-right: 3vw; /* Or any other value */
+}
+
+.spaceOutButtons input[type="radio"]:checked + label {
+    color: darkorange;
+}
+
+
+#DropDownList1 {
+    width: 80%;
+    border-color: orangered;
 }

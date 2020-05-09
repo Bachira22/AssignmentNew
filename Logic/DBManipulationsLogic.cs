@@ -15,13 +15,12 @@ namespace AssignmentNew.Logic
             conn.Open();
         }
 
-        public bool UserNameExists(UserLoginDetails user, Boolean checkPassword = false)
+        public int[] UserNameExists(UserLoginDetails user, Boolean checkPassword = false)
         {
-            var usernameDoesExists = false;
             SqlCommand command;
             SqlDataReader dataReader;
 
-            string sql = "SELECT TOP 1 UserName FROM Users WHERE UserName = '" + user.UserName + "' ";
+            string sql = "SELECT TOP 1 UserId, UserName FROM Users WHERE UserName = '" + user.UserName + "' ";
 
             if (checkPassword == true)
             {
@@ -30,15 +29,16 @@ namespace AssignmentNew.Logic
 
             command = new SqlCommand(sql, conn);
             dataReader = command.ExecuteReader();
-
+            int[] UserInfo = new int[2];
             while (dataReader.Read())
             {
-                usernameDoesExists = true;
-                break;
+                UserInfo[0] = Convert.ToInt32(dataReader.GetValue(0));
+                UserInfo[1] = Convert.ToInt32(dataReader.GetValue(1));
+                return UserInfo;
             }
             dataReader.Close();
             command.Dispose();
-            return usernameDoesExists;
+            return null;
         }
 
         public int WriteToDB(UserPersonalDetails user)

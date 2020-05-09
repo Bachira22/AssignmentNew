@@ -1,7 +1,7 @@
 ﻿using AssignmentNew.Logic;
 using AssignmentNew.Model;
 using System;
-using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI;
 
 namespace AssignmentNew.Views
@@ -10,16 +10,31 @@ namespace AssignmentNew.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["value"] = false;
+            HttpCookie PostBackedCookie = new HttpCookie("PagePostedBack")
+            {
+                Value = "False"
+            };
+
+
+            Request.Cookies.Add(PostBackedCookie);
 
             if (Page.IsPostBack)
             {
+                PostBackedCookie.Value = "True";
+
+                ViewState["UserName"] = UserName.Text;
+
                 if (!string.IsNullOrEmpty(Request["UserName"]) && !string.IsNullOrEmpty(Request["UserPassword"]))
                 {
                     ValidateDetails();
                 }
+                else
+                {
+                    UserName.Text = ViewState["UserName"].ToString();
+                }
             }
         }
+
 
         protected void ValidateDetails()
         {
@@ -31,12 +46,13 @@ namespace AssignmentNew.Views
                     UserName = Request["UserName"],
                     UserPassword = Request["UserPassword"]
                 };
-
-                if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }, true))
+                var UserInfo = dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }, true);
+                if (UserInfo != null)
                 {
-                    
-                    //TO-DO
-                    //Redirect because user exists
+                    Session["UserId"] = UserInfo[0];
+                    Session["UserName"] = UserInfo[1];
+
+                    Response.Redirect("Home.aspx?UserName=" + user.UserName);
                 }
 
                 dbLogic.Dispose();

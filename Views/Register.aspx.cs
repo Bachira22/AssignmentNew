@@ -26,7 +26,7 @@ namespace AssignmentNew.Views
                     UserPassword = Request["UserPassword"]
                 };
 
-                if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }) == false)
+                if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }) == null)
                 {
                     //if username dont exist in the db, insert into db
                     dbLogic.WriteToDB(user);

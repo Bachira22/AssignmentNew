@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="AssignmentNew.Views.Home" %>
+
+
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

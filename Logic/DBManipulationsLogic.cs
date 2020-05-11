@@ -33,7 +33,7 @@ namespace AssignmentNew.Logic
             while (dataReader.Read())
             {
                 UserInfo[0] = Convert.ToInt32(dataReader.GetValue(0));
-                UserInfo[1] = Convert.ToInt32(dataReader.GetValue(1));
+            //    UserInfo[1] = Convert.ToInt32(dataReader.GetValue(1));
                 return UserInfo;
             }
             dataReader.Close();
@@ -47,6 +47,12 @@ namespace AssignmentNew.Logic
             string sql;
             sql = "Insert into Users values ('" + user.UserName + "', '" + user.UserPassword + "')";
             adapter.InsertCommand = new SqlCommand(sql, conn);
+            adapter.InsertCommand.ExecuteNonQuery();
+
+            sql = @"INSERT INTO USERDETAILS 
+            VALUES(" + GetUserId(user.UserName) + ",'" + user.FirstName + "','" + user.LastName + "','" + user.Gender + "','" + user.Address + "'," + user.MobileNumber + "," + user.ProfessionId + ",'" + user.Email + "')";
+            adapter.InsertCommand = new SqlCommand(sql, conn);
+
             var returnVal = adapter.InsertCommand.ExecuteNonQuery(); //return number of rows affected
 
             adapter.Dispose();
@@ -67,6 +73,24 @@ namespace AssignmentNew.Logic
             return 0;
         }
 
+
+        public int GetUserId(string username)
+        { SqlCommand command;
+            SqlDataReader dataReader;
+
+            string sql = "SELECT UserId FROM Users WHERE USERNAME = '"+username+"'";
+
+            command = new SqlCommand(sql, conn);
+            dataReader = command.ExecuteReader();
+            var userid = -1;
+            while (dataReader.Read())
+            {
+                userid = Convert.ToInt32(dataReader.GetValue(0));
+                break;
+            }
+            dataReader.Close();
+            return userid;
+        }
 
         public void Dispose()
         {

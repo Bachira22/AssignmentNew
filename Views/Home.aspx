@@ -9,9 +9,9 @@
     <link href="../Content/Our_Styling/animations.css" rel="stylesheet" />
     <link href="../Content/Our_Styling/style.css" rel="stylesheet" />
     <link href="../Content/Our_Styling/MediaStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" src="JS/jquery-ui.js"> </script>
 
 </head>
 <body>
@@ -32,19 +32,56 @@
                 </label>
             </div>
 
-            <div class="nav-links">
-                <a class="Register" href="#">About Me</a>
-                <a href="login.aspx">Login</a>
+            <div class="nav-links" id="NavBarShortCuts">
+             
             </div>
         </div>
+        <div id="HomeTitle" style="color:white">
+            <h1 style="    font-size: 8vh;
+    margin-left: 4%;
+    margin-top: 4%">Express Medical Supply
+            <i class="fa fa-plus-square" style="font-size:60%;color:red"></i>
+            </h1>
+
+            </div>
         <div id="WelcomeDiv">
             <div id="WelcomeText" style="position: relative">
-                Hey There!
-                <br />
-                Login in <a href="login.aspx">here </a>to view our product
+            We are currently living through some extraordinary times, where all of us are experiencing significant changes to our everyday lives. But even in the face of such extraordinary times, we can make a conscious choice to make the most of this situation – especially for those of us privileged enough to safely stay indoors at a place we can call home. Take advantage of this time to do some much-delayed house cleaning, expand your culinary mastery, or just bank more quality time with yourself or your loved ones. 
+                <br/>
+                <br/>
+As it becomes even clearer just how infectious COVID-19 is, some shoppers have opted for the online orders. In this purpose, we have created this website in order to facilitate the lives of people. There’s no need to queue up to enter the medical stores and by just one click, your product reaches your doorstep.
+                  <br/><button onclick="changePage()" id="welcomeButton" class="fill AboutMe" ></button>
+
             </div>
         </div>
 
     </form>
+
+   <script type="text/javascript">
+
+       function changePage() {
+           if ('<%= Session["IsUserLoggedIn"].ToString()%>' == 'False') {
+               alert("asd");
+  Response.Redirect("Confirm.aspx");
+           }
+       }
+
+       jQuery(document).ready(function () {
+           if ('<%= Session["IsUserLoggedIn"].ToString()%>' == 'False') {
+               document.getElementById("NavBarShortCuts").innerHTML = '<a href="Register.aspx">Register</a> <a href="login.aspx">Login</a>';
+               document.getElementById("welcomeButton").innerHTML = 'Log in';
+               document.getElementById("welcomeButton").h = 'Log in';
+
+
+           } else {
+               document.getElementById("NavBarShortCuts").innerHTML = '<a href="Logout.aspx">Logout</a>';
+                    document.getElementById("welcomeButton").innerHTML = ' View Products ';
+
+           }
+       });
+
+
+        </script>
+
 </body>
 </html>

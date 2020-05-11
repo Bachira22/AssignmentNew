@@ -7,14 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace AssignmentNew.Views
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["IsUserLoggedIn"] == null)
-            {
-                Session["IsUserLoggedIn"] = false;
-            }
+            Session["IsUserLoggedIn"] = false;
+            Response.Redirect("Home.aspx");
+
         }
     }
 }

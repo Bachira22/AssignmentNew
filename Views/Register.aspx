@@ -129,8 +129,8 @@
                 $(".RegisterbackgroundDiv").addClass("RegisterbackgroundDiv_FailedLogin");
             }
             else {
-                  $(".backgroundDiv").removeClass("backgroundDiv_FailedLogin");
-                $(".backgroundDiv").addClass("backgroundDiv_Animate");
+           $(".RegisterbackgroundDiv").removeClass("RegisterbackgroundDiv_FailedLogin");
+           $(".RegisterbackgroundDiv").addClass("RegisterbackgroundDiv_Animate");
             }
         });
 

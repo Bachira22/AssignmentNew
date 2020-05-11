@@ -67,7 +67,7 @@
 }
 
 .RegisterbackgroundDiv_Animate {
-    animation: 3s ease-in displayShadow;
+    animation: 3s ease-in displayShadowRegister;
     animation-fill-mode: forwards;
 }
 

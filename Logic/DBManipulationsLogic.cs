@@ -1,6 +1,8 @@
 ﻿using AssignmentNew.Model;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace AssignmentNew.Logic
 {
@@ -14,6 +16,63 @@ namespace AssignmentNew.Logic
             conn = new SqlConnection(connString);
             conn.Open();
         }
+
+        public HtmlString BuildProducts(string filterBy = null)
+        {
+            SqlCommand command;
+            SqlDataReader dataReader;
+
+            string sql = "SELECT ProductName, ProductDescription, ProductPrice, ProductImage FROM Products";
+
+            if (filterBy != null)
+            {
+                sql += " And ProductName like '%" + filterBy + "%'";
+            }
+
+            command = new SqlCommand(sql, conn);
+            dataReader = command.ExecuteReader();
+            List<Product> AllProducts = new List<Product>();
+            while (dataReader.Read())
+            {
+                Product product = new Product()
+                {
+                    ProductName = dataReader.GetValue(0).ToString(),
+                    ProductDescription = dataReader.GetValue(1).ToString(),
+                    ProductPrice = Convert.ToInt32(dataReader.GetValue(2)),
+                    ProductImage = dataReader.GetValue(3).ToString()
+                };
+                AllProducts.Add(product);
+            }
+
+            HtmlString productHtml = new HtmlString(GetProductString(AllProducts));
+
+            dataReader.Close();
+            command.Dispose();
+            return productHtml;
+        }
+
+        private string GetProductString(List<Product> AllProducts)
+        {
+            string allProductString = "";
+            AllProducts.ForEach(x =>
+            {
+                var productImage = string.IsNullOrEmpty(x.ProductImage) == true ? x.ProductName+ ".png" : x.ProductImage ;
+
+                allProductString += " <div style=\" height: 35vh; width: 35vh; \"> <div class=\"flip-card \" style=\" margin: auto;margin-top: 2vh; \">";
+                allProductString += "<div class=\" flip-card-inner \" >";
+                allProductString += "  <div class=\" flip-card-front \" >";
+                allProductString += "     <img class=\" ProductImages \" src = \"../Images/" + productImage + "\" alt = \" name \" />";
+                allProductString += " </div>";
+                allProductString += " <div class=\"flip-card-back\" >";
+                allProductString += "   <h1>" + x.ProductName + "</h1>";
+                allProductString += "   <p>" + x.ProductDescription + "</p>";
+                allProductString += "   <p>" + x.ProductPrice + "</p>";
+                allProductString += "  </div>";
+                allProductString += "</div> </div> </div> ";
+            });
+            return allProductString;
+        }
+
 
         public int[] UserNameExists(UserLoginDetails user, Boolean checkPassword = false)
         {
@@ -33,7 +92,7 @@ namespace AssignmentNew.Logic
             while (dataReader.Read())
             {
                 UserInfo[0] = Convert.ToInt32(dataReader.GetValue(0));
-            //    UserInfo[1] = Convert.ToInt32(dataReader.GetValue(1));
+                //    UserInfo[1] = Convert.ToInt32(dataReader.GetValue(1));
                 return UserInfo;
             }
             dataReader.Close();
@@ -75,10 +134,11 @@ namespace AssignmentNew.Logic
 
 
         public int GetUserId(string username)
-        { SqlCommand command;
+        {
+            SqlCommand command;
             SqlDataReader dataReader;
 
-            string sql = "SELECT UserId FROM Users WHERE USERNAME = '"+username+"'";
+            string sql = "SELECT UserId FROM Users WHERE USERNAME = '" + username + "'";
 
             command = new SqlCommand(sql, conn);
             dataReader = command.ExecuteReader();

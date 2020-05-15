@@ -9,3 +9,9 @@
     Profession char,
     EmailAddress varchar(255)
     );
+
+Create Table Users (
+	UserId int IDENTITY(1,1) PRIMARY KEY,
+	Username varchar (255),
+	UserPassword varchar (255)
+	);

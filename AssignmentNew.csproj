@@ -111,6 +111,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Our_Styling\accordion-menu.css" />
     <Content Include="Content\Our_Styling\animations-ie-fix.css" />
     <Content Include="Content\Our_Styling\animations.css" />
     <Content Include="Content\Our_Styling\CV.css" />
@@ -147,11 +148,13 @@
     <Content Include="Images\memo.png" />
     <Content Include="Images\memoamp.png" />
     <Content Include="Images\Propliquid.png" />
+    <Content Include="Images\search.png" />
     <Content Include="Images\well50.png" />
     <Content Include="Images\well70.png" />
     <Content Include="Images\wellher.png" />
     <Content Include="Images\wellhim.png" />
     <Content Include="Images\wellori.png" />
+    <Content Include="Scripts\accordion-menu.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

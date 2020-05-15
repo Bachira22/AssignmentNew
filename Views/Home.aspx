@@ -49,7 +49,7 @@
                 <br/>
                 <br/>
 As it becomes even clearer just how infectious COVID-19 is, some shoppers have opted for the online orders. In this purpose, we have created this website in order to facilitate the lives of people. There’s no need to queue up to enter the medical stores and by just one click, your product reaches your doorstep.
-                  <br/><button onclick="changePage()" id="welcomeButton" class="fill AboutMe" ></button>
+<%--                  <br/><button onclick="changePage()" id="welcomeButton" class="fill AboutMe" ></button>--%>
 
             </div>
         </div>
@@ -58,23 +58,13 @@ As it becomes even clearer just how infectious COVID-19 is, some shoppers have o
 
    <script type="text/javascript">
 
-       function changePage() {
-           if ('<%= Session["IsUserLoggedIn"].ToString()%>' == 'False') {
-               alert("asd");
-  Response.Redirect("Confirm.aspx");
-           }
-       }
-
        jQuery(document).ready(function () {
            if ('<%= Session["IsUserLoggedIn"].ToString()%>' == 'False') {
                document.getElementById("NavBarShortCuts").innerHTML = '<a href="Register.aspx">Register</a> <a href="login.aspx">Login</a>';
-               document.getElementById("welcomeButton").innerHTML = 'Log in';
-               document.getElementById("welcomeButton").h = 'Log in';
 
 
            } else {
-               document.getElementById("NavBarShortCuts").innerHTML = '<a href="Logout.aspx">Logout</a>';
-                    document.getElementById("welcomeButton").innerHTML = ' View Products ';
+               document.getElementById("NavBarShortCuts").innerHTML = '<a href="Products.aspx">View Products</a><a href="Logout.aspx">Logout</a>';
 
            }
        });

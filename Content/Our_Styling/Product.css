@@ -39,7 +39,6 @@
 /* Style the back side */
 .flip-card-back {
     background-color: rgba(34,34,34, 0.45);
-    ;
     color: white;
     transform: rotateY(180deg);
 }
@@ -48,4 +47,128 @@
 .ProductImages {
     width: 30vh;
     height: 30vh;
+}
+
+#searchBar {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 27vh;
+    background: #f1f1f1;
+    margin-left: 1vh;
+}
+
+#SearchButton {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+    #SearchButton:hover {
+        background: #0b7dda;
+    }
+
+#lblCartCount {
+    font-size: 11px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -11px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 9px;
+}
+
+
+.container {
+    position: relative;
+    width: 50%;
+    height: 35vh;
+    width: 35vh;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: smaller;
+    padding: 16px 2vh;
+    cursor: pointer;
+}
+
+.ContainerHeader {
+    font-size: large;
+}
+
+    .ContainerHeader > p {
+        font-size: medium;
+    }
+
+
+/* Team Sidebar*/
+
+#SideTeam .CartItems {
+    list-style: none;
+    text-align: left;
+}
+
+    #SideTeam .CartItems li a {
+        color: black;
+    }
+
+.TeamHeader {
+    margin-right: 1px;
+    font-weight: 900;
+    background-color: black !important;
+    color: white;
+}
+
+.TeamList {
+    text-align: left;
+    padding-left: 2%;
+    margin-left: 22px;
+    margin-right: 0px;
+}
+
+
+.UpdateButton {
+    padding: 2vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
 }

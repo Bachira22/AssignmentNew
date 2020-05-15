@@ -53,7 +53,7 @@ namespace AssignmentNew.Views
             }
             else
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Products.aspx");
 
             }
         }
@@ -133,10 +133,11 @@ namespace AssignmentNew.Views
                 if (dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }) == null)
                 {
                     //if username dont exist in the db, insert into db
-                    dbLogic.WriteToDB(user);
+                  
+                    Session["UserId"] = dbLogic.WriteToDB(user);
                     dbLogic.Dispose();
                     Session["IsUserLoggedIn"] = true;
-                    Response.Redirect("Home.aspx?UserName=" + user.UserName);
+                    Response.Redirect("Products.aspx");
 
                 }
                 else

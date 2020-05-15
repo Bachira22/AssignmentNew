@@ -51,7 +51,7 @@ namespace AssignmentNew.Views
                 }
             }
             else{
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Products.aspx");
 
             }
         }
@@ -86,15 +86,14 @@ namespace AssignmentNew.Views
                     UserName = Request["UserName"],
                     UserPassword = Request["UserPassword"]
                 };
-                var UserInfo = dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }, true);
+                var UserId = dbLogic.UserNameExists(new UserLoginDetails { UserName = Request["UserName"], UserPassword = Request["UserPassword"] }, true);
                 dbLogic.Dispose();
 
-                if (UserInfo != null)
+                if (UserId != null)
                 {
-                    Session["UserId"] = UserInfo[0];
-                    //    Session["UserName"] = UserInfo[1];
+                    Session["UserId"] = UserId;
                     Session["IsUserLoggedIn"] = true;
-                    Response.Redirect("Home.aspx?UserName=" + user.UserName);
+                    Response.Redirect("Products.aspx");
                 }
                 else
                 {
